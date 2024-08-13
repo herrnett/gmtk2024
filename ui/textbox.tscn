@@ -1,26 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://dngwbefck1m07"]
+[gd_scene load_steps=9 format=3 uid="uid://dngwbefck1m07"]
 
 [ext_resource type="Texture2D" uid="uid://cnl8owsndoica" path="res://gfx/textbox.png" id="1_1msf6"]
 [ext_resource type="Script" path="res://ui/textbox.gd" id="1_h4w2i"]
 [ext_resource type="FontFile" uid="uid://bexljo7y8scxy" path="res://fonts/superstar_memesbruh03.ttf" id="2_12ghj"]
 [ext_resource type="Texture2D" uid="uid://8uhxkairckf6" path="res://gfx/button.png" id="3_r2wyq"]
+[ext_resource type="Texture2D" uid="uid://b1k8386sbtcxp" path="res://gfx/textboxtip.png" id="4_umqaj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rpvqx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5637p"]
+atlas = ExtResource("3_r2wyq")
+region = Rect2(0, 0, 8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wnn6"]
 atlas = ExtResource("3_r2wyq")
 region = Rect2(8, 0, 8, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tmp8y"]
-atlas = ExtResource("3_r2wyq")
-region = Rect2(16, 0, 8, 9)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3x0xb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rpvqx")
+"texture": SubResource("AtlasTexture_5637p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tmp8y")
+"texture": SubResource("AtlasTexture_0wnn6")
 }],
 "loop": true,
 "name": &"default",
@@ -40,6 +41,24 @@ patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 
+[node name="Control2" type="Control" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/Control2"]
+position = Vector2(12, 36)
+texture = ExtResource("4_umqaj")
+centered = false
+
 [node name="Control" type="Control" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = 3
@@ -54,10 +73,10 @@ grow_vertical = 0
 
 [node name="NextIndicator" type="AnimatedSprite2D" parent="NinePatchRect/Control"]
 visible = false
-position = Vector2(0, -1)
+position = Vector2(-2, -2)
 sprite_frames = SubResource("SpriteFrames_3x0xb")
 autoplay = "default"
-frame_progress = 0.63224
+frame_progress = 0.811992
 centered = false
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
