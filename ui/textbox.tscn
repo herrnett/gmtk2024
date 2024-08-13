@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://dngwbefck1m07"]
+
+[ext_resource type="Texture2D" uid="uid://cnl8owsndoica" path="res://gfx/textbox.png" id="1_1msf6"]
+[ext_resource type="Script" path="res://ui/textbox.gd" id="1_h4w2i"]
+[ext_resource type="FontFile" uid="uid://bexljo7y8scxy" path="res://fonts/superstar_memesbruh03.ttf" id="2_12ghj"]
+[ext_resource type="Texture2D" uid="uid://8uhxkairckf6" path="res://gfx/button.png" id="3_r2wyq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpvqx"]
+atlas = ExtResource("3_r2wyq")
+region = Rect2(8, 0, 8, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmp8y"]
+atlas = ExtResource("3_r2wyq")
+region = Rect2(16, 0, 8, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3x0xb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpvqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmp8y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Textbox" type="MarginContainer"]
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("1_h4w2i")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_1msf6")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Control" type="Control" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="NextIndicator" type="AnimatedSprite2D" parent="NinePatchRect/Control"]
+visible = false
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_3x0xb")
+autoplay = "default"
+frame_progress = 0.63224
+centered = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_12ghj")
+vertical_alignment = 1
+
+[node name="LetterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]
